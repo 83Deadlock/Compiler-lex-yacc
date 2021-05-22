@@ -2,7 +2,7 @@
 #
 # Trabalho Prático PL
 #
-# Programa -> Main funcoes
+# Programa -> Main Funcoes
 #
 # Funcoes -> Funcoes Funcao
 #          | £
@@ -76,7 +76,7 @@ import ply.lex as lex
 tokens = ['ADD','SUB','MUL','DIV','MOD','ATRIB',
           'AND','OR','NOT','EQ','DIF','LES','LEQ','GRE','GEQ',
           'FUNC','DECL','INST','IF','ELSE','REPEAT','UNTIL',
-          'PRINT','READ']
+          'PRINT','READ', 'ID', 'NUM', "int"]
 
 literals = ['(',')','{','}',';']
 
@@ -88,7 +88,7 @@ t_MOD = r'%'
 t_EQ = r'=='
 t_ATRIB = r'='
 t_AND = r'&'
-t_OR = r'#'
+t_OR = r'\#'
 t_NOT = r'\!'
 t_DIF = r'!='
 t_LES = r'<'
@@ -104,11 +104,15 @@ t_REPEAT = r'repeat'
 t_UNTIL = r'until'
 t_PRINT = r'print'
 t_READ = r'read'
+t_ID = r'w+'
+t_NUM = r'd+'
 
 t_ignore = " \t\n"
 
 def t_error(t):
     print("Caracter ilegal: ",t.value[0])
     t.lexer.skip
+
+
 
 lexer = lex.lex()
