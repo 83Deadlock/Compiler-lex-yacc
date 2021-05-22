@@ -7,23 +7,23 @@ from comp_lex import tokens,literals
 def p_Programa(p):
     "Programa : Main Funcoes"
 
-
 def p_Main(p):
-    "Main : FUNC main '{' Declaracoes Instrucoes '}'"
-
+    "Main : func main '{' Declaracoes Instrucoes '}'"
+    p[0] = p[4] + "\nstart" + p[5] + "stop"
 
 def p_Funcoes(p):
     "Funcoes : Funcoes Funcao"
+
 
 def pFuncoesNull(p):
     "Funcoes : "
 
 def p_Funcao(p):
-    "Funcao : FUNC nome '{' Declaracoes Instrucoes '}'"
+    "Funcao : func nome '{' Declaracoes Instrucoes '}'"
 
 
 def p_Declaracoes(p):
-    "Declaracoes : DECL '{' Decls '}'"
+    "Declaracoes : decl '{' Decls '}'"
 
 
 def p_Decls(p):
@@ -63,13 +63,14 @@ def p_InstRead(p):
 
 
 def p_InstAtrib(p):
-    "Inst : ATRIB Exp"
+    "Inst : ID = Exp"
     p[0] = "pushi" + p[2] + "\n"
 
 
 def p_InstIf(p):
-    "Inst : IF '(' cond ')' '{' Insts '}'"
-    
+    "Inst : if '(' cond ')' '{' Insts '}'"
+
+
 
 
 #Parser
