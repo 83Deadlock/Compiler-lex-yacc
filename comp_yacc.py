@@ -34,10 +34,19 @@ def p_DeclsNull(p):
     "Decls : "
 
 
-def p_Decl(p):
+def p_Decl_ID(p):
     "Decl : int ID"
-    "Decl : int ID ATRIB "
+    p.parser.var_int[p[2]] = p.parser.gp
+    p.parser.gp+= 1
+    p[0] = "pushi" + p[2] +"\n"
 
+def p_Decl_ATRIB(p):
+    "Decl : int ATRIB  '=' ID"
+    #not sure, prob é merda
+    p.parser.register[p[3]] = p.parser.var_int[p[2]]
+    p.parser.register[p[3]] = p.paser.gp
+    p.parser.gp+= 1
+    p[0] = "pushi" + p[3] +'\n'
 
 def p_Instrucoes(p):
     "Intrucoes : INST '{' Insts '}'"
@@ -69,14 +78,18 @@ def p_InstAtrib(p):
 
 def p_InstIf(p):
     "Inst : if '(' cond ')' '{' Insts '}'"
+    p[0] = 
 
 
 
 
-#Parser
+
+#Parser Dicktionary
 parser = yacc.yacc()
 
 parser.registers = {}
+parser.var_int ={}
+parser.gp = 0
 
 q = 0
 while q == 0:
