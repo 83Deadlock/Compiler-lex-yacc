@@ -6,11 +6,11 @@ from comp_lex import tokens,literals
 # Rules
 def p_Programa(p):
     "Programa : Main Funcoes"
-    p.parser.fileOut.write(p[1] + p[2])
+    p.parser.fileOut.write("main:\n" + p[1] + p[2])
 
 def p_Main(p):
     "Main : FUNC MAIN '{' Declaracoes Instrucoes '}'"
-    p[0] = p[4] + "\nstart\n" + p[5] + "stop"
+    p[0] = p[4] + "start\n" + p[5] + "stop"
 
 def p_Funcoes(p):
     "Funcoes : Funcoes Funcao"
@@ -62,26 +62,29 @@ def p_InstsNull(p):
     p[0] = ""
 
 
-def p_InstPrint(p):
-    "Inst : PRINT '(' Log ')' ';'"
+def p_Inst_Print(p):
+    "Inst : PRINT LPAR Log RPAR ';'"
     p[0] = p[3] + "writei\n"
 
 
-def p_InstRead(p):
-    "Inst : READ '(' ID ')' ';'"
+def p_Inst_Read(p):
+    "Inst : READ LPAR ID RPAR ';'"
     p[0] = "read\natoi\n" + "storeg " + str(p.parser.var_int[p[3]]) + "\n"
 
 
-def p_InstAtrib(p):
+def p_Inst_Atrib(p):
     "Inst : ID ATRIB ExpCond ';'"
     p[0] = "pushi " + p[3] + "storeg " + str(p.parser.var_int[p[1]]) + "\n"
 
+def p_Inst_If(p):
+    "Inst : IF LPAR Log RPAR '{' Insts '}'"
+    p[0] = p[3] + f"jz fim_if{p.parser.ifCount}\n" + p[6] + f"fimif{p.parser.ifCount}:\n"
+    p.parser.ifCount = p.parser.ifCount + 1 
 
-# def p_InstIf(p):
-#     "Inst : if '(' cond ')' '{' Insts '}'"
-#     #p[0] = 
-
-# No or -> a # b = (a*b) - (a+b)
+def p_Inst_ifelse(p):
+    "Inst : IF LPAR Log RPAR '{' Insts '}' ELSE '{' Insts '}'"
+    p[0] = p[3] + f"jz else{p.parser.ifCount}\n" + p[6] + f"jump fimif{p.parser.ifCount}\n" + f"else{p.parser.ifCount}:\n" + p[10] + f"fimif{p.parser.ifCount}:\n"
+    p.parser.ifCount = p.parser.ifCount + 1
 
 def p_Log_not(p):
     "Log : NOT Log"
@@ -162,7 +165,7 @@ def p_TermoCond_fator(p):
     p[0] = p[1]
 
 def p_FactorCond_par(p):
-    "FactorCond : '(' Log ')'"
+    "FactorCond : LPAR Log RPAR"
     p[0] = p[2]
 
 def p_FactorCond_num(p):

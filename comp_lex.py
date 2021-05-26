@@ -24,12 +24,12 @@
 # Insts -> Insts Inst
 #        | £
 #
-# Inst -> print ( ExpCond ) ;
-#       | read ( id ) ;
+# Inst -> print '(' ExpCond ')' ;
+#       | read '(' id ')' ;
 #       | id = ExpCond ;
-#       | if ( Log ) { Insts }
-#       | if ( Log ) { Insts } else { Insts }
-#       | repeat { Insts } until ( Log )
+#       | if '(' Log ')' '{' Insts '}'
+#       | if '(' Log ')' '{' Insts '}' else '{' Insts '}'
+#       | repeat '{' Insts '}' until '(' Log ')'
 #
 # Log -> ! Log
 #      | Log '&' FactCond
@@ -62,39 +62,134 @@ import ply.lex as lex
 tokens = ['ADD','SUB','MUL','DIV','MOD','ATRIB',
           'AND','OR','NOT','EQ','DIF','LES','LEQ','GRE','GEQ',
           'FUNC','DECL','INST','IF','ELSE','REPEAT','UNTIL',
-          'PRINT','READ', 'ID', 'NUM', "INT","NAME","MAIN"]
+          'PRINT','READ', 'ID', 'NUM', "INT","NAME","MAIN",
+          'LPAR','RPAR']
 
-literals = ['(',')','{','}',';']
+literals = ['{','}',';']
 
-t_ADD = r'\+'
-t_SUB = r'-'
-t_MUL = r'\*'
-t_DIV = r'/'
-t_MOD = r'%'
-t_EQ = r'=='
-t_ATRIB = r'='
-t_AND = r'&'
-t_OR = r'\#'
-t_NOT = r'\!'
-t_DIF = r'!='
-t_LES = r'<'
-t_LEQ = r'<='
-t_GRE = r'>'
-t_GEQ = r'>='
-t_FUNC = r'func'
-t_DECL = r'decl'
-t_INST = r'inst'
-t_IF = r'if'
-t_ELSE = r'else'
-t_REPEAT = r'repeat'
-t_UNTIL = r'until'
-t_PRINT = r'print'
-t_READ = r'read'
-t_INT = r'int'
-t_ID = r'\w+'
-t_NUM = r'\-?\d+'
-t_MAIN = r'main'
-t_NAME = r'name'
+def t_LPAR(t):
+    r'\('
+    return t
+
+def t_RPAR(t):
+    r'\)'
+    return t
+
+def t_ADD(t):
+    r'\+'
+    return t
+
+def t_SUB(t):    
+    r'-'
+    return t
+
+def t_MUL(t):
+    r'\*'
+    return t
+
+def t_DIV(t):
+    r'/'
+    return t
+
+def t_MOD(t):
+    r'%'
+    return t
+
+def t_EQ(t):
+    r'=='
+    return t
+
+def t_ATRIB(t):
+    r'='
+    return t
+
+def t_AND(t):
+    r'&'
+    return t
+
+def t_OR(t):
+    r'\#'
+    return t
+
+def t_NOT(t):
+    r'\!'
+    return t
+
+def t_DIF(t):
+    r'!='
+    return t
+
+def t_LES(t):
+    r'<'
+    return t
+
+def t_LEQ(t):
+    r'<='
+    return t
+
+def t_GRE(t):
+    r'>'
+    return t
+
+def t_GEQ(t):
+    r'>='
+    return t
+
+def t_FUNC(t):
+    r'func'
+    return t
+
+def t_DECL(t):
+    r'decl'
+    return t
+
+def t_INST(t):
+    r'inst'
+    return t
+
+def t_IF(t):
+    r'if'
+    return t
+
+def t_ELSE(t):
+    r'else'
+    return t
+
+def t_REPEAT(t):
+    r'repeat'
+    return t
+
+def t_UNTIL(t):
+    r'until'
+    return t
+
+def t_PRINT(t):
+    r'print'
+    return t
+
+def t_READ(t):
+    r'read'
+    return t
+
+def t_INT(t):
+    r'int'
+    return t
+
+def t_NUM(t):
+    r'\-?\d+'
+    return t
+
+def t_MAIN(t):
+    r'main'
+    return t
+
+def t_NAME(t):
+    r'name'
+    return t
+
+def t_ID(t):
+    r'\w+'
+    return t
 
 t_ignore = " \t\n"
 
