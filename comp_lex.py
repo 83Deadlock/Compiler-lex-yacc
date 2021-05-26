@@ -27,9 +27,9 @@
 # Inst -> print ( ExpCond ) ;
 #       | read ( id ) ;
 #       | id = ExpCond ;
-#       | if ( Log ) { Insts } ;
-#       | if ( Log ) { Insts } else { Insts } ;
-#       | repeat { Insts } until ( Log ) ;
+#       | if ( Log ) { Insts }
+#       | if ( Log ) { Insts } else { Insts }
+#       | repeat { Insts } until ( Log )
 #
 # Log -> ! Log
 #      | Log '&' FactCond
@@ -62,7 +62,7 @@ import ply.lex as lex
 tokens = ['ADD','SUB','MUL','DIV','MOD','ATRIB',
           'AND','OR','NOT','EQ','DIF','LES','LEQ','GRE','GEQ',
           'FUNC','DECL','INST','IF','ELSE','REPEAT','UNTIL',
-          'PRINT','READ', 'ID', 'NUM', "int"]
+          'PRINT','READ', 'ID', 'NUM', "INT","NAME","MAIN"]
 
 literals = ['(',')','{','}',';']
 
@@ -91,14 +91,15 @@ t_UNTIL = r'until'
 t_PRINT = r'print'
 t_READ = r'read'
 t_ID = r'w+'
-t_NUM = r'd+'
+t_NUM = r'\-?d+'
+t_INT = r'int'
+t_MAIN = r'main'
+t_NAME = r'name'
 
 t_ignore = " \t\n"
 
 def t_error(t):
     print("Caracter ilegal: ",t.value[0])
     t.lexer.skip
-
-
 
 lexer = lex.lex()

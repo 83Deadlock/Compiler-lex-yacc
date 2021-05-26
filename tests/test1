@@ -1,0 +1,11 @@
+func main {
+	decl {
+		int x;
+		int y = 1;
+	}	
+	inst {
+		read(x);
+		print(x);
+		print(y);
+	}
+}
