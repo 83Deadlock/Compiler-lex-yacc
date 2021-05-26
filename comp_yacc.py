@@ -10,7 +10,7 @@ def p_Programa(p):
 
 def p_Main(p):
     "Main : FUNC MAIN '{' Declaracoes Instrucoes '}'"
-    p[0] = p[4] + "\nstart" + p[5] + "stop"
+    p[0] = p[4] + "\nstart\n" + p[5] + "stop"
 
 def p_Funcoes(p):
     "Funcoes : Funcoes Funcao"
@@ -44,7 +44,7 @@ def p_Decl_ID(p):
 
 def p_Decl_ATRIB(p):
     "Decl : INT ID ATRIB ExpCond ';'"
-    p.parser.register[p[4]] = p.paser.gp
+    p.parser.var_int[p[2]] = p.parser.gp
     p.parser.gp += 1
     p[0] = p[4]
 
@@ -69,12 +69,12 @@ def p_InstPrint(p):
 
 def p_InstRead(p):
     "Inst : READ '(' ID ')' ';'"
-    p[0] = "read\natoi\n" + "storeg " + p.parser.var_int[p[3]] + "\n"
+    p[0] = "read\natoi\n" + "storeg " + str(p.parser.var_int[p[3]]) + "\n"
 
 
 def p_InstAtrib(p):
     "Inst : ID ATRIB ExpCond ';'"
-    p[0] = "pushi " + p[3] + "storeg " + p.parser.var_int[p[1]] + "\n"
+    p[0] = "pushi " + p[3] + "storeg " + str(p.parser.var_int[p[1]]) + "\n"
 
 
 # def p_InstIf(p):
@@ -171,7 +171,7 @@ def p_FactorCond_num(p):
 
 def p_FactorCond_id(p):
     "FactorCond : ID"
-    p[0] = "pushg " + p.parser.var_int[p[1]] + "\n"
+    p[0] = "pushg " + str(p.parser.var_int[p[1]]) + "\n"
 
 def p_error(p):
     print("Syntax Error in input: ", p)
