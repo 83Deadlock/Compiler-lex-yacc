@@ -17,34 +17,20 @@
 #        | £
 # 
 # Decl -> int id ;
-#        | int id = Exp ;
+#        | int id = ExpCond ;
 # 
 # Instrucoes -> inst { Insts }
 #
 # Insts -> Insts Inst
 #        | £
 #
-# Inst -> print ( Exp ) ;
+# Inst -> print ( ExpCond ) ;
 #       | read ( id ) ;
-#       | id = Exp ;
-#       | if ( cond ) { Insts } ;
-#       | if ( cond ) { Insts } else { Insts } ;
-#       | repeat { Insts } until ( cond ) ;
+#       | id = ExpCond ;
+#       | if ( Log ) { Insts } ;
+#       | if ( Log ) { Insts } else { Insts } ;
+#       | repeat { Insts } until ( Log ) ;
 #
-# Exp -> Exp '+' Termo
-#     |  Exp '-' Termo
-#     |  Termo
-#
-# Termo -> Termo '*' Factor
-#       |  Termo '/' Factor
-#       |  Termo '%' Factor
-#       |  Factor
-#
-# Factor -> '(' Exp ')'
-#         | num
-#         | id
-#
-
 # Log -> ! Log
 #      | Log '&' FactCond
 #      | Log '#' FactCond

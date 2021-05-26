@@ -37,16 +37,14 @@ def p_DeclsNull(p):
 def p_Decl_ID(p):
     "Decl : int ID"
     p.parser.var_int[p[2]] = p.parser.gp
-    p.parser.gp+= 1
-    p[0] = "pushi" + p[2] +"\n"
+    p.parser.gp += 1
+    p[0] = "pushi 0 \n"
 
 def p_Decl_ATRIB(p):
-    "Decl : int ATRIB  '=' ID"
-    #not sure, prob é merda
-    p.parser.register[p[3]] = p.parser.var_int[p[2]]
-    p.parser.register[p[3]] = p.paser.gp
-    p.parser.gp+= 1
-    p[0] = "pushi" + p[3] +'\n'
+    "Decl : int ID  ATRIB ExpCond"
+    p.parser.register[p[4]] = p.paser.gp
+    p.parser.gp += 1
+    p[0] = p[4]
 
 def p_Instrucoes(p):
     "Intrucoes : INST '{' Insts '}'"
@@ -78,11 +76,25 @@ def p_InstAtrib(p):
 
 def p_InstIf(p):
     "Inst : if '(' cond ')' '{' Insts '}'"
-    p[0] = 
+    #p[0] = 
 
+q = 0
+while q == 0:
+    fileInName = input("Input File Path >> ")
+    try:
+        fileIn = open(fileInName,"r")
+        q = 1
+    except (FileNotFoundError, NotADirectoryError):
+        print("Wrong File Path\n")
 
-
-
+q = 0
+while q == 0:
+    fileOutName = input("Output File Path >> ")
+    try:
+        fileOut = open(fileOutName,"w")
+        q = 1
+    except NotADirectoryError:
+        print("Wrong File Path\n")
 
 #Parser Dicktionary
 parser = yacc.yacc()
@@ -90,20 +102,12 @@ parser = yacc.yacc()
 parser.registers = {}
 parser.var_int ={}
 parser.gp = 0
+parser.ifCount = 0      #conta os ifs para qnd criar concatenar com "if"
+parser.cycleCount = 0   #igual aos ifs
+parser.fileOut = fileOut
 
-q = 0
-while q == 0:
-    fileInName = input("InputFile>>")
-    try:
-        fileIn = open(fileInName,"r")
-        lines = fileIn.readlines()
-        q = 1
-    except OSError:
-        print("Nome de ficheiro inválido")
+dataIn = fileIn.read()
+parser.parse(dataIn)
 
-fileOutName = input("OutputFile>>")
-fileOut = open(fileOutName,"w")
-
-for linha in lines:
-    result = parser.parse(linha)
-    fileOut.write(result)
+fileIn.close()
+fileOut.close()
