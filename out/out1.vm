@@ -1,7 +1,6 @@
 main:
 pushi 0 
 pushi 1
-
 start
 read
 atoi

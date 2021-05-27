@@ -69,8 +69,10 @@ def p_Inst_Print(p):
 
 def p_Inst_Read(p):
     "Inst : READ LPAR ID RPAR ';'"
-    p[0] = "read\natoi\n" + "storeg " + str(p.parser.var_int[p[3]]) + "\n"
-
+    if p[3] in p.parser.var_int:
+        p[0] = "read\natoi\n" + "storeg " + str(p.parser.var_int[p[3]]) + "\n"
+    else:
+        print("Unused variable " + p[3]+"\n")
 
 def p_Inst_Atrib(p):
     "Inst : ID ATRIB ExpCond ';'"
@@ -174,7 +176,10 @@ def p_FactorCond_num(p):
 
 def p_FactorCond_id(p):
     "FactorCond : ID"
-    p[0] = "pushg " + str(p.parser.var_int[p[1]]) + "\n"
+    if p[1] in p.parser.var_int:
+        p[0] = "pushg " + str(p.parser.var_int[p[1]]) + "\n"
+    else:
+        print("Unused variable " + p[1]+"\n")
 
 def p_error(p):
     print("Syntax Error in input: ", p)
@@ -200,7 +205,7 @@ while q == 0:
 #Parser Dicktionary
 parser = yacc.yacc()
 
-parser.registers = {}
+#parser.registers = {}
 parser.var_int ={}
 parser.gp = 0
 parser.ifCount = 0      #conta os ifs para qnd criar concatenar com "if"
@@ -212,3 +217,5 @@ parser.parse(dataIn)
 
 fileIn.close()
 fileOut.close()
+
+print(type(parser.var_int))

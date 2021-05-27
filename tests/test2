@@ -1,0 +1,14 @@
+func main {
+	decl {
+		int x;
+		int y = 1;
+	}	
+	inst {
+		read(z);
+		print(x);
+		print(y);
+		if(x == 1){
+			print(1);
+		}
+	}
+}
