@@ -61,7 +61,6 @@ def p_InstsNull(p):
     "Insts : "
     p[0] = ""
 
-
 def p_Inst_Print(p):
     "Inst : PRINT LPAR Log RPAR ';'"
     p[0] = p[3] + "writei\n"
@@ -76,7 +75,7 @@ def p_Inst_Read(p):
 
 def p_Inst_Atrib(p):
     "Inst : ID ATRIB ExpCond ';'"
-    p[0] = "pushi " + p[3] + "storeg " + str(p.parser.var_int[p[1]]) + "\n"
+    p[0] = p[3] + "storeg " + str(p.parser.var_int[p[1]]) + "\n"
 
 def p_Inst_If(p):
     "Inst : IF LPAR Log RPAR '{' Insts '}'"
@@ -86,6 +85,11 @@ def p_Inst_If(p):
 def p_Inst_ifelse(p):
     "Inst : IF LPAR Log RPAR '{' Insts '}' ELSE '{' Insts '}'"
     p[0] = p[3] + f"jz else{p.parser.ifCount}\n" + p[6] + f"jump fimif{p.parser.ifCount}\n" + f"else{p.parser.ifCount}:\n" + p[10] + f"fimif{p.parser.ifCount}:\n"
+    p.parser.ifCount = p.parser.ifCount + 1
+
+def p_Inst_repeat(p):
+    "Inst : REPEAT '{' Insts '}' UNTIL LPAR Log RPAR"
+    p[0] = f"repeat{p.parser.ifCount}:\n" + p[3] + p[7] + f"jz repeat{p.parser.ifCount}\n"
     p.parser.ifCount = p.parser.ifCount + 1
 
 def p_Log_not(p):
@@ -176,10 +180,7 @@ def p_FactorCond_num(p):
 
 def p_FactorCond_id(p):
     "FactorCond : ID"
-    if p[1] in p.parser.var_int:
-        p[0] = "pushg " + str(p.parser.var_int[p[1]]) + "\n"
-    else:
-        print("Unused variable " + p[1]+"\n")
+    p[0] = "pushg " + str(p.parser.var_int[p[1]]) + "\n"
 
 def p_error(p):
     print("Syntax Error in input: ", p)
@@ -217,5 +218,3 @@ parser.parse(dataIn)
 
 fileIn.close()
 fileOut.close()
-
-print(type(parser.var_int))

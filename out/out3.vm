@@ -12,8 +12,12 @@ writei
 pushg 0
 pushi 1
 equal
-jz fim_if0
+jz else0
 pushi 1
+writei
+jump fimif0
+else0:
+pushi 0
 writei
 fimif0:
 stop

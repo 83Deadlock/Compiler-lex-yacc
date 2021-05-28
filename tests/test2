@@ -4,7 +4,7 @@ func main {
 		int y = 1;
 	}	
 	inst {
-		read(z);
+		read(x);
 		print(x);
 		print(y);
 		if(x == 1){

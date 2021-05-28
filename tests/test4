@@ -1,0 +1,11 @@
+func main {
+	decl {
+		int x = 5;
+		int y = 10;
+	}	
+	inst {
+		repeat{
+			x = 1 + x;
+		} until (x == 10)
+	}
+}

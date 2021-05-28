@@ -1,0 +1,14 @@
+main:
+pushi 5
+pushi 10
+start
+repeat0:
+pushi 1
+pushg 0
+add
+storeg 0
+pushg 0
+pushi 10
+equal
+jz repeat0
+stop
