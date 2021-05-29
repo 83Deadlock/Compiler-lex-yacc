@@ -1,0 +1,27 @@
+func main {
+	decl {
+		int x = 0;
+		int min;
+		int curr;
+		int n;
+	}
+	inst {
+		print("Quantos valores a testar ");
+		read(n);
+		repeat{
+			print("Valor: ");
+			if(x == 0){
+				read(min);
+			} else {
+				read(curr);
+				if(curr < min){
+					min = curr;
+				}
+			}
+
+			x = x + 1;
+		} until(x == n)
+		print("Menor valor ");
+		print(min);
+	}
+}

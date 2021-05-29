@@ -7,6 +7,10 @@ atoi
 storeg 0
 pushg 0
 writei
+pushs "\n" 
+writes
 pushg 1
 writei
+pushs "\n" 
+writes
 stop

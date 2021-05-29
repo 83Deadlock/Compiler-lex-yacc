@@ -1,0 +1,8 @@
+func main {
+	decl {
+		int x = 5;
+	}	
+	inst {
+		print(z);
+	}
+}

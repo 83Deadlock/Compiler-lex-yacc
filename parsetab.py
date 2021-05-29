@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = "ADD AND ATRIB DECL DIF DIV ELSE EQ FUNC GEQ GRE ID IF INST INT LEQ LES LPAR MAIN MOD MUL NAME NOT NUM OR PRINT READ REPEAT RPAR SUB UNTILPrograma : Main FuncoesMain : FUNC MAIN '{' Declaracoes Instrucoes '}'Funcoes : Funcoes FuncaoFuncoes : Funcao : FUNC NAME '{' Instrucoes '}'Declaracoes : DECL '{' Decls '}'Decls : Decls DeclDecls : Decl : INT ID ';'Decl : INT ID ATRIB ExpCond ';'Instrucoes : INST '{' Insts '}'Insts : Insts InstInsts : Inst : PRINT LPAR Log RPAR ';'Inst : READ LPAR ID RPAR ';'Inst : ID ATRIB ExpCond ';'Inst : IF LPAR Log RPAR '{' Insts '}'Inst : IF LPAR Log RPAR '{' Insts '}' ELSE '{' Insts '}'Inst : REPEAT '{' Insts '}' UNTIL LPAR Log RPARLog : NOT LogLog : Log AND FactCondLog : Log OR FactCondLog : FactCondFactCond : FactCond LEQ ExpCondFactCond : FactCond LES ExpCondFactCond : FactCond GEQ ExpCondFactCond : FactCond GRE ExpCondFactCond : FactCond EQ ExpCondFactCond : FactCond DIF ExpCondFactCond : ExpCondExpCond : ExpCond ADD TermoCondExpCond : ExpCond SUB TermoCondExpCond : TermoCondTermoCond : TermoCond MUL FactorCondTermoCond : TermoCond DIV FactorCondTermoCond : TermoCond MOD FactorCondTermoCond : FactorCondFactorCond : LPAR Log RPARFactorCond : NUMFactorCond : ID"
+_lr_signature = "ADD AND ATRIB DECL DIF DIV ELSE EQ FUNC GEQ GRE ID IF INST INT LEQ LES LPAR MAIN MOD MUL NAME NOT NUM OR PRINT READ REPEAT RPAR STRING SUB UNTILPrograma : Main FuncoesMain : FUNC MAIN '{' Declaracoes Instrucoes '}'Funcoes : Funcoes FuncaoFuncoes : Funcao : FUNC NAME '{' Instrucoes '}'Declaracoes : DECL '{' Decls '}'Decls : Decls DeclDecls : Decl : INT ID ';'Decl : INT ID ATRIB ExpCond ';'Instrucoes : INST '{' Insts '}'Insts : Insts InstInsts : Inst : PRINT LPAR STRING RPAR ';'Inst : PRINT LPAR Log RPAR ';'Inst : READ LPAR ID RPAR ';'Inst : ID ATRIB ExpCond ';'Inst : IF LPAR Log RPAR '{' Insts '}'Inst : IF LPAR Log RPAR '{' Insts '}' ELSE '{' Insts '}'Inst : REPEAT '{' Insts '}' UNTIL LPAR Log RPARLog : NOT LogLog : Log AND FactCondLog : Log OR FactCondLog : FactCondFactCond : FactCond LEQ ExpCondFactCond : FactCond LES ExpCondFactCond : FactCond GEQ ExpCondFactCond : FactCond GRE ExpCondFactCond : FactCond EQ ExpCondFactCond : FactCond DIF ExpCondFactCond : ExpCondExpCond : ExpCond ADD TermoCondExpCond : ExpCond SUB TermoCondExpCond : TermoCondTermoCond : TermoCond MUL FactorCondTermoCond : TermoCond DIV FactorCondTermoCond : TermoCond MOD FactorCondTermoCond : FactorCondFactorCond : LPAR Log RPARFactorCond : NUMFactorCond : ID"
     
-_lr_action_items = {'FUNC':([0,2,4,6,17,20,],[3,-4,7,-3,-2,-5,]),'$end':([1,2,4,6,17,20,],[0,-4,-1,-3,-2,-5,]),'MAIN':([3,],[5,]),'{':([5,9,11,14,31,72,97,],[8,12,15,18,37,91,99,]),'NAME':([7,],[9,]),'DECL':([8,],[11,]),'INST':([10,12,22,],[14,14,-6,]),'}':([13,15,16,18,19,21,23,25,26,37,38,52,71,74,76,90,91,93,95,98,99,100,101,],[17,-8,20,-13,22,25,-7,-11,-12,-13,-9,73,-16,-10,-14,-15,-13,95,-17,-19,-13,101,-18,]),'INT':([15,19,23,38,74,],[-8,24,-7,-9,-10,]),'PRINT':([18,21,26,37,52,71,76,90,91,93,95,98,99,100,101,],[-13,27,-12,-13,27,-16,-14,-15,-13,27,-17,-19,-13,27,-18,]),'READ':([18,21,26,37,52,71,76,90,91,93,95,98,99,100,101,],[-13,28,-12,-13,28,-16,-14,-15,-13,28,-17,-19,-13,28,-18,]),'ID':([18,21,24,26,33,34,35,36,37,39,40,42,52,56,57,59,60,61,62,63,64,65,66,67,68,69,71,76,90,91,93,94,95,98,99,100,101,],[-13,29,32,-12,48,49,48,48,-13,48,48,48,29,48,48,48,48,48,48,48,48,48,48,48,48,48,-16,-14,-15,-13,29,48,-17,-19,-13,29,-18,]),'IF':([18,21,26,37,52,71,76,90,91,93,95,98,99,100,101,],[-13,30,-12,-13,30,-16,-14,-15,-13,30,-17,-19,-13,30,-18,]),'REPEAT':([18,21,26,37,52,71,76,90,91,93,95,98,99,100,101,],[-13,31,-12,-13,31,-16,-14,-15,-13,31,-17,-19,-13,31,-18,]),'LPAR':([27,28,30,33,35,36,39,40,42,56,57,59,60,61,62,63,64,65,66,67,68,69,92,94,],[33,34,36,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,94,40,]),'ATRIB':([29,32,],[35,39,]),';':([32,45,46,47,48,50,53,55,70,75,85,86,87,88,89,],[38,-33,-37,-39,-40,71,74,76,90,-38,-31,-32,-34,-35,-36,]),'NOT':([33,36,40,42,94,],[42,42,42,42,42,]),'NUM':([33,35,36,39,40,42,56,57,59,60,61,62,63,64,65,66,67,68,69,94,],[47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,]),'RPAR':([41,43,44,45,46,47,48,49,51,54,58,75,77,78,79,80,81,82,83,84,85,86,87,88,89,96,],[55,-23,-30,-33,-37,-39,-40,70,72,75,-20,-38,-21,-22,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,98,]),'AND':([41,43,44,45,46,47,48,51,54,58,75,77,78,79,80,81,82,83,84,85,86,87,88,89,96,],[56,-23,-30,-33,-37,-39,-40,56,56,56,-38,-21,-22,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,56,]),'OR':([41,43,44,45,46,47,48,51,54,58,75,77,78,79,80,81,82,83,84,85,86,87,88,89,96,],[57,-23,-30,-33,-37,-39,-40,57,57,57,-38,-21,-22,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,57,]),'LEQ':([43,44,45,46,47,48,75,77,78,79,80,81,82,83,84,85,86,87,88,89,],[59,-30,-33,-37,-39,-40,-38,59,59,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,]),'LES':([43,44,45,46,47,48,75,77,78,79,80,81,82,83,84,85,86,87,88,89,],[60,-30,-33,-37,-39,-40,-38,60,60,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,]),'GEQ':([43,44,45,46,47,48,75,77,78,79,80,81,82,83,84,85,86,87,88,89,],[61,-30,-33,-37,-39,-40,-38,61,61,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,]),'GRE':([43,44,45,46,47,48,75,77,78,79,80,81,82,83,84,85,86,87,88,89,],[62,-30,-33,-37,-39,-40,-38,62,62,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,]),'EQ':([43,44,45,46,47,48,75,77,78,79,80,81,82,83,84,85,86,87,88,89,],[63,-30,-33,-37,-39,-40,-38,63,63,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,]),'DIF':([43,44,45,46,47,48,75,77,78,79,80,81,82,83,84,85,86,87,88,89,],[64,-30,-33,-37,-39,-40,-38,64,64,-24,-25,-26,-27,-28,-29,-31,-32,-34,-35,-36,]),'ADD':([44,45,46,47,48,50,53,75,79,80,81,82,83,84,85,86,87,88,89,],[65,-33,-37,-39,-40,65,65,-38,65,65,65,65,65,65,-31,-32,-34,-35,-36,]),'SUB':([44,45,46,47,48,50,53,75,79,80,81,82,83,84,85,86,87,88,89,],[66,-33,-37,-39,-40,66,66,-38,66,66,66,66,66,66,-31,-32,-34,-35,-36,]),'MUL':([45,46,47,48,75,85,86,87,88,89,],[67,-37,-39,-40,-38,67,67,-34,-35,-36,]),'DIV':([45,46,47,48,75,85,86,87,88,89,],[68,-37,-39,-40,-38,68,68,-34,-35,-36,]),'MOD':([45,46,47,48,75,85,86,87,88,89,],[69,-37,-39,-40,-38,69,69,-34,-35,-36,]),'UNTIL':([73,],[92,]),'ELSE':([95,],[97,]),}
+_lr_action_items = {'FUNC':([0,2,4,6,17,20,],[3,-4,7,-3,-2,-5,]),'$end':([1,2,4,6,17,20,],[0,-4,-1,-3,-2,-5,]),'MAIN':([3,],[5,]),'{':([5,9,11,14,31,74,100,],[8,12,15,18,37,94,102,]),'NAME':([7,],[9,]),'DECL':([8,],[11,]),'INST':([10,12,22,],[14,14,-6,]),'}':([13,15,16,18,19,21,23,25,26,37,38,53,73,76,78,79,93,94,96,98,101,102,103,104,],[17,-8,20,-13,22,25,-7,-11,-12,-13,-9,75,-17,-10,-14,-15,-16,-13,98,-18,-20,-13,104,-19,]),'INT':([15,19,23,38,76,],[-8,24,-7,-9,-10,]),'PRINT':([18,21,26,37,53,73,78,79,93,94,96,98,101,102,103,104,],[-13,27,-12,-13,27,-17,-14,-15,-16,-13,27,-18,-20,-13,27,-19,]),'READ':([18,21,26,37,53,73,78,79,93,94,96,98,101,102,103,104,],[-13,28,-12,-13,28,-17,-14,-15,-16,-13,28,-18,-20,-13,28,-19,]),'ID':([18,21,24,26,33,34,35,36,37,39,40,43,53,58,59,61,62,63,64,65,66,67,68,69,70,71,73,78,79,93,94,96,97,98,101,102,103,104,],[-13,29,32,-12,49,50,49,49,-13,49,49,49,29,49,49,49,49,49,49,49,49,49,49,49,49,49,-17,-14,-15,-16,-13,29,49,-18,-20,-13,29,-19,]),'IF':([18,21,26,37,53,73,78,79,93,94,96,98,101,102,103,104,],[-13,30,-12,-13,30,-17,-14,-15,-16,-13,30,-18,-20,-13,30,-19,]),'REPEAT':([18,21,26,37,53,73,78,79,93,94,96,98,101,102,103,104,],[-13,31,-12,-13,31,-17,-14,-15,-16,-13,31,-18,-20,-13,31,-19,]),'LPAR':([27,28,30,33,35,36,39,40,43,58,59,61,62,63,64,65,66,67,68,69,70,71,95,97,],[33,34,36,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,97,40,]),'ATRIB':([29,32,],[35,39,]),';':([32,46,47,48,49,51,54,56,57,72,77,88,89,90,91,92,],[38,-34,-38,-40,-41,73,76,78,79,93,-39,-32,-33,-35,-36,-37,]),'STRING':([33,],[41,]),'NOT':([33,36,40,43,97,],[43,43,43,43,43,]),'NUM':([33,35,36,39,40,43,58,59,61,62,63,64,65,66,67,68,69,70,71,97,],[48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,]),'RPAR':([41,42,44,45,46,47,48,49,50,52,55,60,77,80,81,82,83,84,85,86,87,88,89,90,91,92,99,],[56,57,-24,-31,-34,-38,-40,-41,72,74,77,-21,-39,-22,-23,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,101,]),'AND':([42,44,45,46,47,48,49,52,55,60,77,80,81,82,83,84,85,86,87,88,89,90,91,92,99,],[58,-24,-31,-34,-38,-40,-41,58,58,58,-39,-22,-23,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,58,]),'OR':([42,44,45,46,47,48,49,52,55,60,77,80,81,82,83,84,85,86,87,88,89,90,91,92,99,],[59,-24,-31,-34,-38,-40,-41,59,59,59,-39,-22,-23,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,59,]),'LEQ':([44,45,46,47,48,49,77,80,81,82,83,84,85,86,87,88,89,90,91,92,],[61,-31,-34,-38,-40,-41,-39,61,61,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,]),'LES':([44,45,46,47,48,49,77,80,81,82,83,84,85,86,87,88,89,90,91,92,],[62,-31,-34,-38,-40,-41,-39,62,62,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,]),'GEQ':([44,45,46,47,48,49,77,80,81,82,83,84,85,86,87,88,89,90,91,92,],[63,-31,-34,-38,-40,-41,-39,63,63,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,]),'GRE':([44,45,46,47,48,49,77,80,81,82,83,84,85,86,87,88,89,90,91,92,],[64,-31,-34,-38,-40,-41,-39,64,64,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,]),'EQ':([44,45,46,47,48,49,77,80,81,82,83,84,85,86,87,88,89,90,91,92,],[65,-31,-34,-38,-40,-41,-39,65,65,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,]),'DIF':([44,45,46,47,48,49,77,80,81,82,83,84,85,86,87,88,89,90,91,92,],[66,-31,-34,-38,-40,-41,-39,66,66,-25,-26,-27,-28,-29,-30,-32,-33,-35,-36,-37,]),'ADD':([45,46,47,48,49,51,54,77,82,83,84,85,86,87,88,89,90,91,92,],[67,-34,-38,-40,-41,67,67,-39,67,67,67,67,67,67,-32,-33,-35,-36,-37,]),'SUB':([45,46,47,48,49,51,54,77,82,83,84,85,86,87,88,89,90,91,92,],[68,-34,-38,-40,-41,68,68,-39,68,68,68,68,68,68,-32,-33,-35,-36,-37,]),'MUL':([46,47,48,49,77,88,89,90,91,92,],[69,-38,-40,-41,-39,69,69,-35,-36,-37,]),'DIV':([46,47,48,49,77,88,89,90,91,92,],[70,-38,-40,-41,-39,70,70,-35,-36,-37,]),'MOD':([46,47,48,49,77,88,89,90,91,92,],[71,-38,-40,-41,-39,71,71,-35,-36,-37,]),'UNTIL':([75,],[95,]),'ELSE':([98,],[100,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'Programa':([0,],[1,]),'Main':([0,],[2,]),'Funcoes':([2,],[4,]),'Funcao':([4,],[6,]),'Declaracoes':([8,],[10,]),'Instrucoes':([10,12,],[13,16,]),'Decls':([15,],[19,]),'Insts':([18,37,91,99,],[21,52,93,100,]),'Decl':([19,],[23,]),'Inst':([21,52,93,100,],[26,26,26,26,]),'Log':([33,36,40,42,94,],[41,51,54,58,96,]),'FactCond':([33,36,40,42,56,57,94,],[43,43,43,43,77,78,43,]),'ExpCond':([33,35,36,39,40,42,56,57,59,60,61,62,63,64,94,],[44,50,44,53,44,44,44,44,79,80,81,82,83,84,44,]),'TermoCond':([33,35,36,39,40,42,56,57,59,60,61,62,63,64,65,66,94,],[45,45,45,45,45,45,45,45,45,45,45,45,45,45,85,86,45,]),'FactorCond':([33,35,36,39,40,42,56,57,59,60,61,62,63,64,65,66,67,68,69,94,],[46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,87,88,89,46,]),}
+_lr_goto_items = {'Programa':([0,],[1,]),'Main':([0,],[2,]),'Funcoes':([2,],[4,]),'Funcao':([4,],[6,]),'Declaracoes':([8,],[10,]),'Instrucoes':([10,12,],[13,16,]),'Decls':([15,],[19,]),'Insts':([18,37,94,102,],[21,53,96,103,]),'Decl':([19,],[23,]),'Inst':([21,53,96,103,],[26,26,26,26,]),'Log':([33,36,40,43,97,],[42,52,55,60,99,]),'FactCond':([33,36,40,43,58,59,97,],[44,44,44,44,80,81,44,]),'ExpCond':([33,35,36,39,40,43,58,59,61,62,63,64,65,66,97,],[45,51,45,54,45,45,45,45,82,83,84,85,86,87,45,]),'TermoCond':([33,35,36,39,40,43,58,59,61,62,63,64,65,66,67,68,97,],[46,46,46,46,46,46,46,46,46,46,46,46,46,46,88,89,46,]),'FactorCond':([33,35,36,39,40,43,58,59,61,62,63,64,65,66,67,68,69,70,71,97,],[47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,90,91,92,47,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,44 +27,45 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> Programa","S'",1,None,None,None),
-  ('Programa -> Main Funcoes','Programa',2,'p_Programa','comp_yacc.py',8),
-  ('Main -> FUNC MAIN { Declaracoes Instrucoes }','Main',6,'p_Main','comp_yacc.py',12),
-  ('Funcoes -> Funcoes Funcao','Funcoes',2,'p_Funcoes','comp_yacc.py',16),
-  ('Funcoes -> <empty>','Funcoes',0,'p_Funcoes_Null','comp_yacc.py',20),
-  ('Funcao -> FUNC NAME { Instrucoes }','Funcao',5,'p_Funcao','comp_yacc.py',24),
-  ('Declaracoes -> DECL { Decls }','Declaracoes',4,'p_Declaracoes','comp_yacc.py',28),
-  ('Decls -> Decls Decl','Decls',2,'p_Decls','comp_yacc.py',32),
-  ('Decls -> <empty>','Decls',0,'p_DeclsNull','comp_yacc.py',36),
-  ('Decl -> INT ID ;','Decl',3,'p_Decl_ID','comp_yacc.py',40),
-  ('Decl -> INT ID ATRIB ExpCond ;','Decl',5,'p_Decl_ATRIB','comp_yacc.py',46),
-  ('Instrucoes -> INST { Insts }','Instrucoes',4,'p_Instrucoes','comp_yacc.py',52),
-  ('Insts -> Insts Inst','Insts',2,'p_Insts','comp_yacc.py',56),
+  ('Programa -> Main Funcoes','Programa',2,'p_Programa','comp_yacc.py',9),
+  ('Main -> FUNC MAIN { Declaracoes Instrucoes }','Main',6,'p_Main','comp_yacc.py',13),
+  ('Funcoes -> Funcoes Funcao','Funcoes',2,'p_Funcoes','comp_yacc.py',17),
+  ('Funcoes -> <empty>','Funcoes',0,'p_Funcoes_Null','comp_yacc.py',21),
+  ('Funcao -> FUNC NAME { Instrucoes }','Funcao',5,'p_Funcao','comp_yacc.py',25),
+  ('Declaracoes -> DECL { Decls }','Declaracoes',4,'p_Declaracoes','comp_yacc.py',29),
+  ('Decls -> Decls Decl','Decls',2,'p_Decls','comp_yacc.py',33),
+  ('Decls -> <empty>','Decls',0,'p_DeclsNull','comp_yacc.py',37),
+  ('Decl -> INT ID ;','Decl',3,'p_Decl_ID','comp_yacc.py',41),
+  ('Decl -> INT ID ATRIB ExpCond ;','Decl',5,'p_Decl_ATRIB','comp_yacc.py',47),
+  ('Instrucoes -> INST { Insts }','Instrucoes',4,'p_Instrucoes','comp_yacc.py',53),
+  ('Insts -> Insts Inst','Insts',2,'p_Insts','comp_yacc.py',57),
   ('Insts -> <empty>','Insts',0,'p_InstsNull','comp_yacc.py',61),
-  ('Inst -> PRINT LPAR Log RPAR ;','Inst',5,'p_Inst_Print','comp_yacc.py',65),
-  ('Inst -> READ LPAR ID RPAR ;','Inst',5,'p_Inst_Read','comp_yacc.py',70),
-  ('Inst -> ID ATRIB ExpCond ;','Inst',4,'p_Inst_Atrib','comp_yacc.py',77),
-  ('Inst -> IF LPAR Log RPAR { Insts }','Inst',7,'p_Inst_If','comp_yacc.py',81),
-  ('Inst -> IF LPAR Log RPAR { Insts } ELSE { Insts }','Inst',11,'p_Inst_ifelse','comp_yacc.py',86),
-  ('Inst -> REPEAT { Insts } UNTIL LPAR Log RPAR','Inst',8,'p_Inst_repeat','comp_yacc.py',91),
-  ('Log -> NOT Log','Log',2,'p_Log_not','comp_yacc.py',96),
-  ('Log -> Log AND FactCond','Log',3,'p_Log_and','comp_yacc.py',100),
-  ('Log -> Log OR FactCond','Log',3,'p_Log_or','comp_yacc.py',104),
-  ('Log -> FactCond','Log',1,'p_Log_factcond','comp_yacc.py',108),
-  ('FactCond -> FactCond LEQ ExpCond','FactCond',3,'p_FactCond_leq','comp_yacc.py',112),
-  ('FactCond -> FactCond LES ExpCond','FactCond',3,'p_FactCond_les','comp_yacc.py',116),
-  ('FactCond -> FactCond GEQ ExpCond','FactCond',3,'p_FactCond_geq','comp_yacc.py',120),
-  ('FactCond -> FactCond GRE ExpCond','FactCond',3,'p_FactCond_gre','comp_yacc.py',124),
-  ('FactCond -> FactCond EQ ExpCond','FactCond',3,'p_FactCond_eq','comp_yacc.py',128),
-  ('FactCond -> FactCond DIF ExpCond','FactCond',3,'p_FactCond_dif','comp_yacc.py',132),
-  ('FactCond -> ExpCond','FactCond',1,'p_FactCond_expcond','comp_yacc.py',136),
-  ('ExpCond -> ExpCond ADD TermoCond','ExpCond',3,'p_ExpCond_add','comp_yacc.py',140),
-  ('ExpCond -> ExpCond SUB TermoCond','ExpCond',3,'p_ExpCond_sub','comp_yacc.py',144),
-  ('ExpCond -> TermoCond','ExpCond',1,'p_ExpCond_termo','comp_yacc.py',148),
-  ('TermoCond -> TermoCond MUL FactorCond','TermoCond',3,'p_TermoCond_mult','comp_yacc.py',152),
-  ('TermoCond -> TermoCond DIV FactorCond','TermoCond',3,'p_TermoCond_div','comp_yacc.py',156),
-  ('TermoCond -> TermoCond MOD FactorCond','TermoCond',3,'p_TermoCond_mod','comp_yacc.py',163),
-  ('TermoCond -> FactorCond','TermoCond',1,'p_TermoCond_fator','comp_yacc.py',170),
-  ('FactorCond -> LPAR Log RPAR','FactorCond',3,'p_FactorCond_par','comp_yacc.py',174),
-  ('FactorCond -> NUM','FactorCond',1,'p_FactorCond_num','comp_yacc.py',178),
-  ('FactorCond -> ID','FactorCond',1,'p_FactorCond_id','comp_yacc.py',182),
+  ('Inst -> PRINT LPAR STRING RPAR ;','Inst',5,'p_Inst_Print_str','comp_yacc.py',65),
+  ('Inst -> PRINT LPAR Log RPAR ;','Inst',5,'p_Inst_Print_log','comp_yacc.py',69),
+  ('Inst -> READ LPAR ID RPAR ;','Inst',5,'p_Inst_Read','comp_yacc.py',73),
+  ('Inst -> ID ATRIB ExpCond ;','Inst',4,'p_Inst_Atrib','comp_yacc.py',80),
+  ('Inst -> IF LPAR Log RPAR { Insts }','Inst',7,'p_Inst_If','comp_yacc.py',84),
+  ('Inst -> IF LPAR Log RPAR { Insts } ELSE { Insts }','Inst',11,'p_Inst_ifelse','comp_yacc.py',89),
+  ('Inst -> REPEAT { Insts } UNTIL LPAR Log RPAR','Inst',8,'p_Inst_repeat','comp_yacc.py',94),
+  ('Log -> NOT Log','Log',2,'p_Log_not','comp_yacc.py',99),
+  ('Log -> Log AND FactCond','Log',3,'p_Log_and','comp_yacc.py',103),
+  ('Log -> Log OR FactCond','Log',3,'p_Log_or','comp_yacc.py',107),
+  ('Log -> FactCond','Log',1,'p_Log_factcond','comp_yacc.py',111),
+  ('FactCond -> FactCond LEQ ExpCond','FactCond',3,'p_FactCond_leq','comp_yacc.py',115),
+  ('FactCond -> FactCond LES ExpCond','FactCond',3,'p_FactCond_les','comp_yacc.py',119),
+  ('FactCond -> FactCond GEQ ExpCond','FactCond',3,'p_FactCond_geq','comp_yacc.py',123),
+  ('FactCond -> FactCond GRE ExpCond','FactCond',3,'p_FactCond_gre','comp_yacc.py',127),
+  ('FactCond -> FactCond EQ ExpCond','FactCond',3,'p_FactCond_eq','comp_yacc.py',131),
+  ('FactCond -> FactCond DIF ExpCond','FactCond',3,'p_FactCond_dif','comp_yacc.py',135),
+  ('FactCond -> ExpCond','FactCond',1,'p_FactCond_expcond','comp_yacc.py',139),
+  ('ExpCond -> ExpCond ADD TermoCond','ExpCond',3,'p_ExpCond_add','comp_yacc.py',143),
+  ('ExpCond -> ExpCond SUB TermoCond','ExpCond',3,'p_ExpCond_sub','comp_yacc.py',147),
+  ('ExpCond -> TermoCond','ExpCond',1,'p_ExpCond_termo','comp_yacc.py',151),
+  ('TermoCond -> TermoCond MUL FactorCond','TermoCond',3,'p_TermoCond_mult','comp_yacc.py',155),
+  ('TermoCond -> TermoCond DIV FactorCond','TermoCond',3,'p_TermoCond_div','comp_yacc.py',159),
+  ('TermoCond -> TermoCond MOD FactorCond','TermoCond',3,'p_TermoCond_mod','comp_yacc.py',166),
+  ('TermoCond -> FactorCond','TermoCond',1,'p_TermoCond_fator','comp_yacc.py',173),
+  ('FactorCond -> LPAR Log RPAR','FactorCond',3,'p_FactorCond_par','comp_yacc.py',177),
+  ('FactorCond -> NUM','FactorCond',1,'p_FactorCond_num','comp_yacc.py',181),
+  ('FactorCond -> ID','FactorCond',1,'p_FactorCond_id','comp_yacc.py',185),
 ]

@@ -1,5 +1,6 @@
 import ply.yacc as yacc
 import sys
+import os
 
 from comp_lex import tokens,literals
 
@@ -56,15 +57,17 @@ def p_Insts(p):
     "Insts : Insts Inst"
     p[0] = p[1] + p[2]
 
-
 def p_InstsNull(p):
     "Insts : "
     p[0] = ""
 
-def p_Inst_Print(p):
-    "Inst : PRINT LPAR Log RPAR ';'"
-    p[0] = p[3] + "writei\n"
+def p_Inst_Print_str(p):
+    "Inst : PRINT LPAR STRING RPAR ';'"
+    p[0] = "pushs " + p[3] + "\n" + "writes\n"
 
+def p_Inst_Print_log(p):
+    "Inst : PRINT LPAR Log RPAR ';'"
+    p[0] = p[3] + "writei\npushs \"\\n\" \nwrites\n"
 
 def p_Inst_Read(p):
     "Inst : READ LPAR ID RPAR ';'"
@@ -79,7 +82,7 @@ def p_Inst_Atrib(p):
 
 def p_Inst_If(p):
     "Inst : IF LPAR Log RPAR '{' Insts '}'"
-    p[0] = p[3] + f"jz fim_if{p.parser.ifCount}\n" + p[6] + f"fimif{p.parser.ifCount}:\n"
+    p[0] = p[3] + f"jz fimif{p.parser.ifCount}\n" + p[6] + f"fimif{p.parser.ifCount}:\n"
     p.parser.ifCount = p.parser.ifCount + 1 
 
 def p_Inst_ifelse(p):
@@ -180,10 +183,18 @@ def p_FactorCond_num(p):
 
 def p_FactorCond_id(p):
     "FactorCond : ID"
-    p[0] = "pushg " + str(p.parser.var_int[p[1]]) + "\n"
+    if p[1] in p.parser.var_int:
+        p[0] = "pushg " + str(p.parser.var_int[p[1]]) + "\n"
+    else:
+        print("'" + p[1] + "' variable undefined.")
+        p[0] = ""
+        parser.errorCount = parser.errorCount + 1
+        parser.success = False
 
 def p_error(p):
     print("Syntax Error in input: ", p)
+    parser.errorCount = parser.errorCount + 1
+    parser.success = False
 
 q = 0
 while q == 0:
@@ -203,18 +214,22 @@ while q == 0:
     except NotADirectoryError:
         print("Wrong File Path\n")
 
-#Parser Dicktionary
 parser = yacc.yacc()
 
-#parser.registers = {}
 parser.var_int ={}
 parser.gp = 0
 parser.ifCount = 0      #conta os ifs para qnd criar concatenar com "if"
 parser.cycleCount = 0   #igual aos ifs
+parser.success = True
 parser.fileOut = fileOut
+parser.errorCount = 0
 
 dataIn = fileIn.read()
 parser.parse(dataIn)
 
 fileIn.close()
 fileOut.close()
+
+if not parser.success:
+    print(f"Found {parser.errorCount} errors in " + fileInName +".")
+    os.remove(fileOutName)

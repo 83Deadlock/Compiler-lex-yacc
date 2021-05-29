@@ -7,17 +7,25 @@ atoi
 storeg 0
 pushg 0
 writei
+pushs "\n" 
+writes
 pushg 1
 writei
+pushs "\n" 
+writes
 pushg 0
 pushi 1
 equal
 jz else0
 pushi 1
 writei
+pushs "\n" 
+writes
 jump fimif0
 else0:
 pushi 0
 writei
+pushs "\n" 
+writes
 fimif0:
 stop

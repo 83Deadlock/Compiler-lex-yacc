@@ -24,7 +24,8 @@
 # Insts -> Insts Inst
 #        | £
 #
-# Inst -> print '(' ExpCond ')' ;
+# Inst -> print '(' Log ')' ;
+#       | print '(' string ')'
 #       | read '(' id ')' ;
 #       | id = ExpCond ;
 #       | if '(' Log ')' '{' Insts '}'
@@ -63,7 +64,7 @@ tokens = ['ADD','SUB','MUL','DIV','MOD','ATRIB',
           'AND','OR','NOT','EQ','DIF','LES','LEQ','GRE','GEQ',
           'FUNC','DECL','INST','IF','ELSE','REPEAT','UNTIL',
           'PRINT','READ', 'ID', 'NUM', "INT","NAME","MAIN",
-          'LPAR','RPAR']
+          'LPAR','RPAR','STRING']
 
 literals = ['{','}',';']
 
@@ -187,8 +188,12 @@ def t_NAME(t):
     r'name'
     return t
 
+def t_STRING(t):
+    r'\"[^"]*\"'
+    return t
+
 def t_ID(t):
-    r'\w+'
+    r'[a-zA-Z][a-zA-Z0-9_]*'
     return t
 
 t_ignore = " \t\n"

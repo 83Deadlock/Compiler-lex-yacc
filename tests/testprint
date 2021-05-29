@@ -1,0 +1,9 @@
+func main {
+	decl {
+		int x = 1;
+	}
+	inst{
+		print(x);
+		print("ola");
+	}
+}
