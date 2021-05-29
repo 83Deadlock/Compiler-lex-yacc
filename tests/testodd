@@ -1,0 +1,6 @@
+func main {
+	decl {
+		int current;
+		int n;
+	}
+}

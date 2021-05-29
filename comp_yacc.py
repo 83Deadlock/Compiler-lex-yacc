@@ -145,7 +145,7 @@ def p_ExpCond_add(p):
 
 def p_ExpCond_sub(p):
     "ExpCond : ExpCond SUB TermoCond"
-    p[0] = p[1] - p[3] + "sub\n"
+    p[0] = p[1] + p[3] + "sub\n"
 
 def p_ExpCond_termo(p):
     "ExpCond : TermoCond"
