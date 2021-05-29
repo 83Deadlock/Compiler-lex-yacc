@@ -23,7 +23,8 @@ def p_Funcoes_Null(p):
 
 def p_Funcao(p):
     "Funcao : FUNC NAME '{' Instrucoes '}'"
-    p[0] = p[4]
+    p.parser.functionsDefined.append(p[2])
+    p[0] = f"{p[2]}:\n{p[4]}return\n"
 
 def p_Declaracoes(p):
     "Declaracoes : DECL '{' Decls '}'"
@@ -75,6 +76,10 @@ def p_Inst_Read(p):
         p[0] = "read\natoi\n" + "storeg " + str(p.parser.var_int[p[3]]) + "\n"
     else:
         print("Unused variable " + p[3]+"\n")
+
+def p_Inst_Exec(p):
+    "Inst : EXEC name LPAR RPAR ';'"
+    p[0] = f"pusha {p[2]}\ncall\n"
 
 def p_Inst_Atrib(p):
     "Inst : ID ATRIB ExpCond ';'"
@@ -222,19 +227,27 @@ while q == 0:
 
 parser = yacc.yacc()
 
-parser.var_int ={}
+parser.var_int = {}
 parser.gp = 0
 parser.ifCount = 0      #conta os ifs para qnd criar concatenar com "if"
 parser.cycleCount = 0   #igual aos ifs
 parser.success = True
 parser.fileOut = fileOut
 parser.errorCount = 0
+parser.functionsDefined = []
+parser.functionsCalled = []
 
 dataIn = fileIn.read()
 parser.parse(dataIn)
 
 fileIn.close()
 fileOut.close()
+
+for func in parser.functionsCalled:
+    if not func in parser.functionsDefined:
+        print("Undefined function '" + func +"'.")
+        parser.success = False
+        parser.errorCount = parser.errorCount + 1
 
 if not parser.success:
     print(f"Found {parser.errorCount} errors in " + fileInName +".")

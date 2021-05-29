@@ -27,6 +27,7 @@
 # Inst -> print '(' Log ')' ;
 #       | print '(' string ')'
 #       | read '(' id ')' ;
+#       | exec nome '(' ')' ';'
 #       | id = ExpCond ;
 #       | if '(' Log ')' '{' Insts '}'
 #       | if '(' Log ')' '{' Insts '}' else '{' Insts '}'
@@ -64,9 +65,13 @@ tokens = ['ADD','SUB','MUL','DIV','MOD','ATRIB',
           'AND','OR','NOT','EQ','DIF','LES','LEQ','GRE','GEQ',
           'FUNC','DECL','INST','IF','ELSE','REPEAT','UNTIL',
           'PRINT','READ', 'ID', 'NUM', "INT","NAME","MAIN",
-          'LPAR','RPAR','STRING']
+          'LPAR','RPAR','STRING','EXEC']
 
 literals = ['{','}',';']
+
+def t_EXEC(t):
+    r'\?'
+    return t
 
 def t_LPAR(t):
     r'\('
