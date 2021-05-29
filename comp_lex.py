@@ -112,12 +112,12 @@ def t_OR(t):
     r'\#'
     return t
 
-def t_NOT(t):
-    r'\!'
-    return t
-
 def t_DIF(t):
     r'!='
+    return t
+
+def t_NOT(t):
+    r'\!'
     return t
 
 def t_LES(t):

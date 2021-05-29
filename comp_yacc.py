@@ -160,14 +160,20 @@ def p_TermoCond_div(p):
     if p[3] != 0:
         p[0] = p[1] + p[3] + "div\n"
     else:
-        p[0] = "pushi 0\n"
+        print("Invalid operation:\n\tCan't divide " + p[1] + "by zero.")
+        p[0] = ""
+        parser.errorCount = parser.errorCount + 1
+        parser.success = False
 
 def p_TermoCond_mod(p):
     "TermoCond : TermoCond MOD FactorCond"
     if p[3] != 0:
         p[0] = p[1] + p[3] + "mod\n"
     else:
-        p[0] = "pushi -1\n"
+        print("Invalid operation:\n\tCan't divide " + p[1] + "by zero.")
+        p[0] = ""
+        parser.errorCount = parser.errorCount + 1
+        parser.success = False
 
 def p_TermoCond_fator(p):
     "TermoCond : FactorCond"
