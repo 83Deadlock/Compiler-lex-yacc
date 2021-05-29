@@ -190,7 +190,7 @@ def t_MAIN(t):
     return t
 
 def t_NAME(t):
-    r'name'
+    r'[A-Z][a-zA-Z0-9_]*'
     return t
 
 def t_STRING(t):
@@ -198,7 +198,7 @@ def t_STRING(t):
     return t
 
 def t_ID(t):
-    r'[a-zA-Z][a-zA-Z0-9_]*'
+    r'[a-z][a-zA-Z0-9_]*'
     return t
 
 t_ignore = " \t\n"

@@ -1,0 +1,27 @@
+func main {
+	decl {
+
+	}
+	inst {
+		? Potencia();
+	}
+}
+
+func Potencia {
+	decl {
+		int b;
+		int e;
+		int res = 1;
+	}
+	inst {
+		print("valor da base: ");
+		read(b);
+		print("valor do expoente: ");
+		read(e);
+		repeat{
+			res = res * b;
+			e = e - 1;
+		} until(e == 0)
+		print(res);
+	}
+}

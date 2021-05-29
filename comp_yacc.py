@@ -11,7 +11,7 @@ def p_Programa(p):
 
 def p_Main(p):
     "Main : FUNC MAIN '{' Declaracoes Instrucoes '}'"
-    p[0] = p[4] + "start\n" + p[5] + "stop"
+    p[0] = p[4] + "start\n" + p[5] + "stop\n"
 
 def p_Funcoes(p):
     "Funcoes : Funcoes Funcao"
@@ -22,9 +22,9 @@ def p_Funcoes_Null(p):
     p[0] = ""
 
 def p_Funcao(p):
-    "Funcao : FUNC NAME '{' Instrucoes '}'"
+    "Funcao : FUNC NAME '{' Declaracoes Instrucoes '}'"
     p.parser.functionsDefined.append(p[2])
-    p[0] = f"{p[2]}:\n{p[4]}return\n"
+    p[0] = f"{p[2]}:\n{p[4]}{p[5]}return\n"
 
 def p_Declaracoes(p):
     "Declaracoes : DECL '{' Decls '}'"
@@ -78,7 +78,7 @@ def p_Inst_Read(p):
         print("Unused variable " + p[3]+"\n")
 
 def p_Inst_Exec(p):
-    "Inst : EXEC name LPAR RPAR ';'"
+    "Inst : EXEC NAME LPAR RPAR ';'"
     p[0] = f"pusha {p[2]}\ncall\n"
 
 def p_Inst_Atrib(p):
