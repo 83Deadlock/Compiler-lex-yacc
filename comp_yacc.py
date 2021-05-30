@@ -227,15 +227,37 @@ while q == 0:
 
 parser = yacc.yacc()
 
+# Vamos usar um dicionário para guardar
+# o nome das variáveis e a sua posição na stack (gp)
 parser.var_int = {}
 parser.gp = 0
-parser.ifCount = 0      #conta os ifs para qnd criar concatenar com "if"
-parser.cycleCount = 0   #igual aos ifs
-parser.success = True
-parser.fileOut = fileOut
-parser.errorCount = 0
+
+# Vamos usar estas duas listas para que uma contenha
+# o nome de todas as funções definidas no programa,
+# enquanto a outra contem os nomes das funções chamadas
+# durante a execução do programa.
+# No final, se existir alguma função chamada sem estar 
+# definida, vamos imprimir uma mensagem de erro.
 parser.functionsDefined = []
 parser.functionsCalled = []
+
+# Conta os If statements criados até à altura
+# e utiliza esse número para concatenar com o if
+# na linguagem máquina
+parser.ifCount = 0      
+
+# Serve o mesmo propósito que o ifCount
+parser.cycleCount = 0 
+
+# Se este boolean for False no final da compilação
+# do ficheiro de input, vamos imprimir uma mensagem de erro
+# e eliminar o ficheiro .vm criado
+parser.success = True
+# Na mensagem de erro apresentada, vamos indicar quantos erros
+# foram encontrados na produção do ficheiro .vm
+parser.errorCount = 0
+
+parser.fileOut = fileOut
 
 dataIn = fileIn.read()
 parser.parse(dataIn)
@@ -243,12 +265,15 @@ parser.parse(dataIn)
 fileIn.close()
 fileOut.close()
 
+# Verificação das funções definidas e chamadas
 for func in parser.functionsCalled:
     if not func in parser.functionsDefined:
         print("Undefined function '" + func +"'.")
         parser.success = False
         parser.errorCount = parser.errorCount + 1
 
+# Se o parsing não for bem sucedido, eliminamos o ficheiro gerado
+# e imprimimos uma mensagem de erro.
 if not parser.success:
     print(f"Found {parser.errorCount} errors in " + fileInName +".")
     os.remove(fileOutName)

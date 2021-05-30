@@ -1,0 +1,46 @@
+main:
+pushi 0 
+pushi 0 
+pushi 0 
+pushi 0 
+start
+pushs "a = "
+writes
+read
+atoi
+storeg 0
+pushs "b = "
+writes
+read
+atoi
+storeg 1
+pushs "c = "
+writes
+read
+atoi
+storeg 2
+pushs "d = "
+writes
+read
+atoi
+storeg 3
+pushg 0
+pushg 1
+equal
+pushg 1
+pushg 2
+equal
+mul
+pushg 2
+pushg 3
+equal
+mul
+jz else0
+pushs "É um quadrado!\n"
+writes
+jump fimif0
+else0:
+pushs "Não é um quadrado!\n"
+writes
+fimif0:
+stop

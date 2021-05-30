@@ -1,0 +1,49 @@
+main:
+pushi 0 
+pushi 0 
+pushi 0
+start
+pushs "Quantos valores a considerar? "
+writes
+read
+atoi
+storeg 1
+repeat1:
+pushs "valor: "
+writes
+read
+atoi
+storeg 0
+pushg 0
+pushi 2
+mod
+pushi 0
+equal
+not
+jz fimif0
+pushs "Número impar = "
+writes
+pushg 0
+writei
+pushs "\n" 
+writes
+pushg 2
+pushi 1
+add
+storeg 2
+fimif0:
+pushg 1
+pushi 1
+sub
+storeg 1
+pushg 1
+pushi 0
+equal
+jz repeat1
+pushs "Números ímpares encontrados: "
+writes
+pushg 2
+writei
+pushs "\n" 
+writes
+stop

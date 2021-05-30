@@ -1,0 +1,37 @@
+main:
+start
+pusha Potencia
+call
+stop
+Potencia:
+pushi 0 
+pushi 0 
+pushi 1
+pushs "valor da base: "
+writes
+read
+atoi
+storeg 0
+pushs "valor do expoente: "
+writes
+read
+atoi
+storeg 1
+repeat0:
+pushg 2
+pushg 0
+mul
+storeg 2
+pushg 1
+pushi 1
+sub
+storeg 1
+pushg 1
+pushi 0
+equal
+jz repeat0
+pushg 2
+writei
+pushs "\n" 
+writes
+return

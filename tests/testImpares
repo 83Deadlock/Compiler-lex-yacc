@@ -1,0 +1,23 @@
+func main {
+	decl {
+		int current;
+		int n;
+		int odds = 0;
+	}
+	inst {
+		print("Quantos valores a considerar? ");
+		read(n);
+		repeat{
+			print("valor: ");
+			read(current);
+			if((current % 2) != 0){
+				print("Número impar = ");
+				print(current);
+				odds = odds + 1;
+			}
+			n = n - 1;
+		} until(n == 0)
+		print("Números ímpares encontrados: ");
+		print(odds);
+	}
+}
