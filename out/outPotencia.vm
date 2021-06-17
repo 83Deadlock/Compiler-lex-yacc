@@ -2,6 +2,8 @@ main:
 start
 pusha Potencia
 call
+pusha X
+call
 stop
 Potencia:
 pushi 0 
@@ -33,5 +35,9 @@ jz repeat0
 pushg 2
 writei
 pushs "\n" 
+writes
+return
+X:
+pushs "that's all folks!\n"
 writes
 return

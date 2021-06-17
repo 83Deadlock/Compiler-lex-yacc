@@ -76,10 +76,13 @@ def p_Inst_Read(p):
         p[0] = "read\natoi\n" + "storeg " + str(p.parser.var_int[p[3]]) + "\n"
     else:
         print("Unused variable " + p[3]+"\n")
+        parser.errorCount = parser.errorCount + 1
+        parser.success = False
 
 def p_Inst_Exec(p):
     "Inst : EXEC NAME LPAR RPAR ';'"
     p[0] = f"pusha {p[2]}\ncall\n"
+    p.parser.functionsCalled.append(p[2])
 
 def p_Inst_Atrib(p):
     "Inst : ID ATRIB ExpCond ';'"

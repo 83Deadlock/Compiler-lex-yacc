@@ -2,6 +2,8 @@ main:
 pushi 0 
 pushi 1
 start
+pushs "x="
+writes
 read
 atoi
 storeg 0

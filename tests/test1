@@ -4,6 +4,7 @@ func main {
 		int y = 1;
 	}	
 	inst {
+		print("x=");
 		read(x);
 		print(x);
 		print(y);

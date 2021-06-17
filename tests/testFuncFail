@@ -4,11 +4,10 @@ func main {
 	}
 	inst {
 		? Potencia();
-		? X();
 	}
 }
 
-func Potencia {
+func QualquerCoisa {
 	decl {
 		int b;
 		int e;
@@ -24,14 +23,5 @@ func Potencia {
 			e = e - 1;
 		} until(e == 0)
 		print(res);
-	}
-}
-
-func X {
-	decl{
-
-	}
-	inst {
-		print("that's all folks!\n");
 	}
 }

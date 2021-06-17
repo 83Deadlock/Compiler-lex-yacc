@@ -17,7 +17,7 @@
 #        | £
 # 
 # Decl -> int id ;
-#        | int id = ExpCond ;
+#       | int id = ExpCond ;
 # 
 # Instrucoes -> inst { Insts }
 #
@@ -25,15 +25,15 @@
 #        | £
 #
 # Inst -> print '(' Log ')' ;
-#       | print '(' string ')'
+#       | print '(' string ')' ;
 #       | read '(' id ')' ;
-#       | exec nome '(' ')' ';'
+#       | '?' nome '(' ')' ';'
 #       | id = ExpCond ;
 #       | if '(' Log ')' '{' Insts '}'
 #       | if '(' Log ')' '{' Insts '}' else '{' Insts '}'
 #       | repeat '{' Insts '}' until '(' Log ')'
 #
-# Log -> ! Log
+# Log -> '!' Log
 #      | Log '&' FactCond
 #      | Log '#' FactCond
 #      | FactCond
